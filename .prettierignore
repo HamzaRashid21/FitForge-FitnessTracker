@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+coverage
+*.log
+old_project
+package-lock.json
+*.docx
+fitforge.md
+.env*
+*.d.ts
