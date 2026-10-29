@@ -1,33 +1,25 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import App from '../src/App.js';
 
-vi.mock('../src/services/healthService.js', () => ({
-  fetchHealthStatus: vi.fn().mockResolvedValue({
-    status: 'ok',
-    timestamp: '2026-10-29T00:00:00.000Z',
-    uptimeSeconds: 120,
-    environment: 'test',
-    version: '0.1.0',
-    services: {
-      database: {
-        status: 'connected',
-        readyState: 1,
-      },
-    },
-  }),
-}));
-
-describe('App Smoke Test', () => {
-  it('renders application shell and FitForge header without crashing', async () => {
+describe('App Smoke Test — Phase 1 Public Website', () => {
+  it('renders application shell, FitForge brand, and hero headline without crashing', () => {
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: /FitForge Fitness Platform/i })).toBeInTheDocument();
-    expect(screen.getByText('FOUNDATION')).toBeInTheDocument();
-    expect(screen.getByText('Phase 0 Active')).toBeInTheDocument();
+    // Brand wordmark in navigation
+    expect(screen.getAllByText(/FORGE/i)[0]).toBeInTheDocument();
 
-    await waitFor(() => {
-      expect(screen.getByText('System Health Verification')).toBeInTheDocument();
-    });
+    // Orisa index-7 split hero headline
+    expect(
+      screen.getByRole('heading', { name: /FORGE YOUR PHYSIQUE\. TRACK WITH PRECISION\./i })
+    ).toBeInTheDocument();
+
+    // Public navigation links
+    expect(screen.getAllByRole('link', { name: /Pricing/i })[0]).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: /About/i })[0]).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: /Contact/i })[0]).toBeInTheDocument();
+
+    // Theme toggle button
+    expect(screen.getByRole('button', { name: /switch to light mode/i })).toBeInTheDocument();
   });
 });
