@@ -1,194 +1,142 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Flame, Sun, Moon, Menu, X, ArrowRight } from 'lucide-react';
+import { Flame, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../providers/ThemeProvider.js';
 
 export const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true); // default open on desktop
 
   const navLinks = [
     { label: 'Home', href: '/' },
-    { label: 'Features', href: '/#features' },
-    { label: 'How It Works', href: '/#how-it-works' },
     { label: 'About', href: '/about' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'Contact', href: '/contact' },
     { label: 'Coming Soon', href: '/coming-soon' },
   ];
 
-  const handleLinkClick = (href: string) => {
-    setIsMobileMenuOpen(false);
-    if (href.startsWith('/#') && location.pathname === '/') {
-      const element = document.getElementById(href.replace('/#', ''));
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
-  const isActive = (href: string) => {
-    if (href === '/') return location.pathname === '/';
-    if (href.startsWith('/#')) return false;
-    return location.pathname === href;
-  };
+  const isActive = (href: string) => location.pathname === href;
 
   return (
-    <header className="ff-header">
-      <div className="ff-container">
-        <nav className="ff-navbar" aria-label="Main Navigation">
-          {/* Brand Logo */}
-          <Link to="/" className="ff-logo" onClick={() => setIsMobileMenuOpen(false)}>
-            <div className="ff-logo-badge">
-              <Flame size={20} />
-            </div>
-            <span>
-              FIT<span style={{ color: 'var(--color-primary)' }}>FORGE</span>
-            </span>
-          </Link>
-
-          {/* Desktop Navigation Links */}
-          <ul className="ff-nav-links">
-            {navLinks.map((link) => (
-              <li key={link.label}>
-                <Link
-                  to={link.href}
-                  className={`ff-nav-link ${isActive(link.href) ? 'active' : ''}`}
-                  onClick={() => handleLinkClick(link.href)}
-                >
-                  {link.label}
+    <header className={`header-7 ${isMenuOpen ? 'is-menu-open' : ''}`}>
+      <div className="at-header-area at-header-spacing header-transparent">
+        <div className="container-2200 px-lg-5 px-3">
+          <div className="row align-items-center">
+            {/* Logo */}
+            <div className="col-xl-2 col-6">
+              <div className="at-header-logo">
+                <Link to="/" className="d-flex align-items-center gap-2 text-decoration-none">
+                  <div
+                    style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '8px',
+                      background: 'linear-gradient(135deg, #FF5500, #C7260A)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#fff',
+                      boxShadow: '0 2px 8px rgba(255, 85, 0, 0.4)',
+                    }}
+                  >
+                    <Flame size={18} />
+                  </div>
+                  <p className="h6 fw-700 fz-24 text-white mb-0" style={{ letterSpacing: '-0.02em' }}>
+                    FIT<span style={{ color: 'var(--at-theme-primary, #FF5500)' }}>FORGE</span>
+                  </p>
                 </Link>
-              </li>
-            ))}
-          </ul>
-
-          {/* Desktop Actions */}
-          <div className="ff-nav-actions">
-            {/* Dark / Light Mode Toggle */}
-            <button
-              className="ff-theme-toggle"
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            >
-              {theme === 'dark' ? (
-                <Sun size={18} color="var(--color-accent)" />
-              ) : (
-                <Moon size={18} color="var(--color-primary)" />
-              )}
-            </button>
-
-            {/* CTA Button */}
-            <Link
-              to="/pricing"
-              className="ff-btn ff-btn-primary"
-              style={{ display: 'none' }}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Get Started <ArrowRight size={16} />
-            </Link>
-
-            {/* Desktop Quick CTA */}
-            <Link
-              to="/pricing"
-              className="ff-btn ff-btn-primary"
-              style={{ padding: '0.625rem 1.25rem', fontSize: '0.875rem' }}
-            >
-              Get Started <ArrowRight size={14} />
-            </Link>
-
-            {/* Mobile Hamburger Menu Button */}
-            <button
-              className="ff-mobile-menu-btn"
-              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              aria-label="Toggle navigation menu"
-              aria-expanded={isMobileMenuOpen}
-            >
-              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
-        </nav>
-      </div>
-
-      {/* Mobile Drawer Overlay */}
-      {isMobileMenuOpen && (
-        <div
-          className="ff-drawer-overlay"
-          onClick={() => setIsMobileMenuOpen(false)}
-          aria-hidden="true"
-        />
-      )}
-
-      {/* Mobile Offcanvas Drawer */}
-      <aside className={`ff-mobile-drawer ${isMobileMenuOpen ? 'open' : ''}`}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Link to="/" className="ff-logo" onClick={() => setIsMobileMenuOpen(false)}>
-            <div className="ff-logo-badge">
-              <Flame size={18} />
+              </div>
             </div>
-            <span>
-              FIT<span style={{ color: 'var(--color-primary)' }}>FORGE</span>
-            </span>
-          </Link>
-          <button
-            className="ff-theme-toggle"
-            onClick={() => setIsMobileMenuOpen(false)}
-            aria-label="Close menu"
-          >
-            <X size={20} />
-          </button>
-        </div>
 
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.href}
-              className={`ff-nav-link ${isActive(link.href) ? 'active' : ''}`}
-              style={{ fontSize: '1.125rem' }}
-              onClick={() => handleLinkClick(link.href)}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+            {/* Menu & Actions */}
+            <div className="col-xl-10 col-6">
+              <div className="at-header-right gap-3 d-flex justify-content-end align-items-center">
+                {/* Desktop Menu */}
+                <div
+                  id="header7Nav"
+                  className="at-main-menu menu-light d-inline-flex justify-content-center style-1"
+                  aria-label="Primary navigation"
+                >
+                  <nav className="at-mobile-menu-active">
+                    <ul className="d-flex align-items-center mb-0 list-unstyled gap-4">
+                      {navLinks.map((link) => (
+                        <li key={link.label}>
+                          <Link
+                            to={link.href}
+                            className={isActive(link.href) ? 'text-white fw-700' : 'text-white opacity-75'}
+                            style={{ textDecoration: 'none' }}
+                          >
+                            {link.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                </div>
 
-        <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: '0.75rem',
-              backgroundColor: 'var(--color-bg-card)',
-              borderRadius: 'var(--radius-lg)',
-            }}
-          >
-            <span style={{ fontSize: '0.875rem', fontWeight: 600 }}>Theme</span>
-            <button
-              className="ff-theme-toggle"
-              onClick={toggleTheme}
-              aria-label="Toggle theme in mobile menu"
-            >
-              {theme === 'dark' ? (
-                <Sun size={18} color="var(--color-accent)" />
-              ) : (
-                <Moon size={18} color="var(--color-primary)" />
-              )}
-            </button>
+                {/* Dark / Light Mode Switcher */}
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                  title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    transition: 'all 0.25s ease',
+                  }}
+                >
+                  {theme === 'dark' ? (
+                    <Sun size={17} color="#CCFF00" />
+                  ) : (
+                    <Moon size={17} color="#FF5500" />
+                  )}
+                </button>
+
+                {/* CTA Button */}
+                <div className="d-none d-sm-block">
+                  <Link
+                    to="/pricing"
+                    className="at-btn sec-1-home-7__cta-btn"
+                    style={{ height: '42px', padding: '0 20px', fontSize: '14px' }}
+                  >
+                    <span>
+                      <span className="text-1">Get Started</span>
+                      <span className="text-2">Get Started</span>
+                    </span>
+                  </Link>
+                </div>
+
+                {/* Hamburger Toggle */}
+                <button
+                  id="header7Toggle"
+                  className="at-hamburger"
+                  type="button"
+                  aria-controls="header7Nav"
+                  aria-expanded={isMenuOpen}
+                  aria-label="Toggle navigation menu"
+                  onClick={() => setIsMenuOpen((prev) => !prev)}
+                >
+                  <span className="at-hamburger__box" aria-hidden="true">
+                    <span className="at-hamburger__bar"></span>
+                    <span className="at-hamburger__bar"></span>
+                    <span className="at-hamburger__bar"></span>
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
-
-          <Link
-            to="/pricing"
-            className="ff-btn ff-btn-primary"
-            style={{ width: '100%' }}
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Get Started Free <ArrowRight size={16} />
-          </Link>
         </div>
-      </aside>
+      </div>
     </header>
   );
 };
