@@ -2,31 +2,64 @@
 <html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/assets/imgs/template/logo/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FitForge — Modern Fitness Tracking Platform</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <script>
+      (function() {
+        var saved = localStorage.getItem('theme') || localStorage.getItem('fitforge-theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-bs-theme', saved);
+        }
+      })();
+    </script>
     <meta
       name="description"
-      content="FitForge is an elite full-stack fitness management and progress tracking platform."
+      content="Orisa — Creative Agency &amp; Portfolio. Multi-demo layout kit built with Bootstrap 5."
     />
+    <title>Orisa - Advancing Startup Innovation</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/imgs/template/logo/favicon.svg" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Orisa Libs CSS -->
+    <!-- Libs CSS -->
     <link rel="stylesheet" href="/assets/css/vendors/carouselTicker.css" />
     <link rel="stylesheet" href="/assets/css/vendors/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/vendors/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/assets/css/vendors/nice-select.css" />
     <link rel="stylesheet" href="/assets/css/vendors/font-awesome-pro.css" />
+    <link rel="stylesheet" href="/assets/css/vendors/magnific-popup.css" />
+    <link rel="stylesheet" href="/assets/css/vendors/odometer.css" />
     <link rel="stylesheet" href="/assets/css/vendors/spacing.css" />
+
+    <!-- Main CSS -->
     <link rel="stylesheet" href="/assets/css/main.css" />
   </head>
+
   <body class="at-magic-cursor">
     <div id="root"></div>
+
+    <!--
+      Vendor libraries (jQuery, GSAP + ScrollTrigger/ScrollSmoother/SplitText, Swiper, ...).
+      They are loaded once, in the original order. The template's own scripts
+      (at-cursor.js, main.js, throwable.js) are executed by src/website/runtime/pageScripts.js
+      every time a page is mounted, so animations and menus behave exactly like on a fresh page load.
+    -->
+    <script src="/assets/js/vendors/color-modes.js"></script>
+    <script src="/assets/js/vendors/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/vendors/plugin.js"></script>
+    <script src="/assets/js/vendors/bootstrap.min.js"></script>
+    <script src="/assets/js/vendors/swiper-bundle.min.js"></script>
+    <script src="/assets/js/vendors/jquery.carouselTicker.min.js"></script>
+    <script src="/assets/js/vendors/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/js/vendors/jquery.odometer.min.js"></script>
+    <script src="/assets/js/vendors/jquery.appear.js"></script>
+    <script src="/assets/js/vendors/jquery.elevatezoom.js"></script>
+    <script src="/assets/js/vendors/nice-select.js"></script>
+    <script src="/assets/js/vendors/parallax.js"></script>
+    <script src="/assets/js/vendors/ripple-2.js"></script>
+    <script src="/assets/js/vendors/imagesloaded-pkgd.js"></script>
+    <script src="/assets/js/vendors/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/vendors/image-hover-effects.js"></script>
+    <script src="/assets/js/matter.js"></script>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

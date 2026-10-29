@@ -1,16 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { RootLayout } from '../layouts/RootLayout.js';
-import { HomePage } from '../../pages/HomePage.js';
-import { AboutPage } from '../../pages/AboutPage.js';
-import { PricingPage } from '../../pages/PricingPage.js';
-import { ContactPage } from '../../pages/ContactPage.js';
-import { ComingSoonPage } from '../../pages/ComingSoonPage.js';
-import { NotFoundPage } from '../../pages/NotFoundPage.js';
+import { WebsiteLayout } from '../../website/layouts/WebsiteLayout.js';
+import HomePage from '../../website/pages/HomePage.js';
+import AboutPage from '../../website/pages/AboutPage.js';
+import PricingPage from '../../website/pages/PricingPage.js';
+import ContactPage from '../../website/pages/ContactPage.js';
+import ComingSoonPage from '../../website/pages/ComingSoonPage.js';
+import NotFoundPage from '../../website/pages/NotFoundPage.js';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootLayout />,
+    element: <WebsiteLayout />,
     children: [
       {
         index: true,
@@ -33,9 +33,15 @@ export const router = createBrowserRouter([
         element: <ComingSoonPage />,
       },
       {
+        path: '404',
+        element: <NotFoundPage />,
+      },
+      {
         path: '*',
         element: <NotFoundPage />,
       },
     ],
   },
 ]);
+
+export default router;

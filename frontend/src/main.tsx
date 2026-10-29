@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App.js';
 import './styles/global.css';
@@ -9,8 +8,5 @@ if (!rootElement) {
   throw new Error('Failed to locate the root element in the document.');
 }
 
-ReactDOM.createRoot(rootElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// StrictMode is intentionally omitted: the template's jQuery/GSAP scripts must be initialised once per page.
+ReactDOM.createRoot(rootElement).render(<App />);

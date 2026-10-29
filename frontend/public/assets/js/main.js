@@ -263,9 +263,11 @@
 
     ////////////////////////////////////////////////////
     // 08. mobile menu Js
-    var tpMenuWrap = $('.at-mobile-menu-active > ul').clone();
     var tpSideMenu = $('.at-offcanvas-menu nav');
-    tpSideMenu.append(tpMenuWrap);
+    if (tpSideMenu.children('ul').length === 0) {
+        var tpMenuWrap = $('.at-mobile-menu-active > ul').clone();
+        tpSideMenu.append(tpMenuWrap);
+    }
     if ($(tpSideMenu).find('.at-submenu').length != 0) {
         $(tpSideMenu).find('.at-submenu').parent().append('<button class="at-menu-close"><i class="fa-solid fa-plus"></i></button>');
     }
@@ -305,16 +307,7 @@
     });
 
     ////////////////////////////////////////////////////
-    // 08.x Header 7 inline menu toggle
-    $(document).on('click', '.header-7 .at-header-menu-btn', function (e) {
-        e.preventDefault();
-        const $btn = $(this);
-        const $header = $btn.closest('.header-7');
-        const isOpen = $header.hasClass('is-menu-open');
-
-        $header.toggleClass('is-menu-open', !isOpen);
-        $btn.attr('aria-expanded', String(!isOpen));
-    });
+    // 08.x Header 7 inline menu toggle handled directly by React in Header.tsx
 
     ////////////////////////////////////////////////////
     // 09. auto update year

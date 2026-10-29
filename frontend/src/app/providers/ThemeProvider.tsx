@@ -10,21 +10,29 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-const THEME_STORAGE_KEY = 'fitforge-theme';
+const THEME_STORAGE_KEY = 'theme';
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<ThemeMode>(() => {
     if (typeof window === 'undefined') return 'dark';
-    const saved = localStorage.getItem(THEME_STORAGE_KEY) as ThemeMode | null;
+    const saved = (localStorage.getItem('theme') || localStorage.getItem('fitforge-theme')) as ThemeMode | null;
     if (saved === 'dark' || saved === 'light') {
       return saved;
     }
-    return 'dark'; // FitForge defaults to dark athletic theme
+    const htmlTheme = document.documentElement.getAttribute('data-bs-theme') as ThemeMode | null;
+    if (htmlTheme === 'dark' || htmlTheme === 'light') {
+      return htmlTheme;
+    }
+    return 'dark'; // Orisa index-7 defaults to dark mode
   });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-bs-theme', theme);
     localStorage.setItem(THEME_STORAGE_KEY, theme);
+    localStorage.setItem('fitforge-theme', theme);
+    document.querySelectorAll<HTMLInputElement>('#switch, input.dark-light-checkbox').forEach((cb) => {
+      cb.checked = theme === 'dark';
+    });
   }, [theme]);
 
   const toggleTheme = () => {

@@ -1,44 +1,14 @@
 @import './variables.css';
-@import './orisa-theme.css';
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
+/* Normalize font smoothing without breaking ScrollSmoother body height */
 body {
-  height: 100%;
-}
-
-body {
-  background-color: var(--color-bg-base);
-  color: var(--color-text-primary);
-  font-family: var(--font-family);
-  font-size: 1rem;
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 #root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-a:hover {
-  color: var(--color-primary-hover);
+  width: 100%;
+  position: relative;
 }
 
 button,
@@ -48,10 +18,84 @@ textarea {
   font: inherit;
 }
 
-code,
-pre {
-  font-family:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
-  font-size: 0.875rem;
+/* ----------------------------------------------------
+   Light Mode Header Contrast Fix
+   Prevents white-on-white text/icons on light background
+   without altering any original Orisa styling or layout.
+   ---------------------------------------------------- */
+[data-bs-theme="light"] .header-7.header-on-page,
+[data-bs-theme="light"] .header-7.is-scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-bs-theme="light"] .header-7.header-on-page .at-header-logo p.text-white,
+[data-bs-theme="light"] .header-7.is-scrolled .at-header-logo p.text-white,
+[data-bs-theme="light"] .header-7.header-on-page .at-hamburger.text-white,
+[data-bs-theme="light"] .header-7.is-scrolled .at-hamburger.text-white,
+[data-bs-theme="light"] .header-7.header-on-page .at-header-sidebar-btn.text-white,
+[data-bs-theme="light"] .header-7.is-scrolled .at-header-sidebar-btn.text-white {
+  color: #111827 !important;
+}
+
+[data-bs-theme="light"] .header-7.header-on-page .at-hamburger__bar,
+[data-bs-theme="light"] .header-7.is-scrolled .at-hamburger__bar {
+  background-color: #111827 !important;
+}
+
+[data-bs-theme="light"] .header-7.header-on-page .at-header-search-btn svg path,
+[data-bs-theme="light"] .header-7.is-scrolled .at-header-search-btn svg path {
+  stroke: #111827 !important;
+}
+
+[data-bs-theme="light"] .header-7.header-on-page .at-header-logo img,
+[data-bs-theme="light"] .header-7.is-scrolled .at-header-logo img {
+  filter: brightness(0) !important;
+}
+
+[data-bs-theme="light"] .header-7.header-on-page .at-main-menu.menu-light.style-1,
+[data-bs-theme="light"] .header-7.is-scrolled .at-main-menu.menu-light.style-1 {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-bs-theme="light"] .header-7.header-on-page .at-main-menu.menu-light nav ul li a,
+[data-bs-theme="light"] .header-7.is-scrolled .at-main-menu.menu-light nav ul li a,
+[data-bs-theme="light"] .header-7.header-on-page .at-main-menu.menu-light nav ul li.has-dropdown > a,
+[data-bs-theme="light"] .header-7.is-scrolled .at-main-menu.menu-light nav ul li.has-dropdown > a {
+  color: #111827 !important;
+}
+
+[data-bs-theme="light"] .header-7.header-on-page .at-main-menu.menu-light nav ul li.has-dropdown > a::after,
+[data-bs-theme="light"] .header-7.is-scrolled .at-main-menu.menu-light nav ul li.has-dropdown > a::after {
+  filter: none !important;
+}
+
+[data-bs-theme="light"] .header-7.header-on-page .at-main-menu.menu-light nav ul li .submenu,
+[data-bs-theme="light"] .header-7.is-scrolled .at-main-menu.menu-light nav ul li .submenu {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-bs-theme="light"] .header-7.header-on-page .at-main-menu.menu-light nav ul li .submenu li a,
+[data-bs-theme="light"] .header-7.is-scrolled .at-main-menu.menu-light nav ul li .submenu li a {
+  color: #374151 !important;
+}
+
+[data-bs-theme="light"] .header-7.header-on-page .at-main-menu.menu-light nav ul li .submenu li a:hover,
+[data-bs-theme="light"] .header-7.is-scrolled .at-main-menu.menu-light nav ul li .submenu li a:hover {
+  color: #111827 !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Light Mode Moon & Sun Icon Color */
+[data-bs-theme="light"] .dark-light-mode .icon--moon svg path,
+[data-bs-theme="light"] .dark-light-mode .icon--sun svg path {
+  fill: #0f172a !important;
+}
+
+[data-bs-theme="dark"] .dark-light-mode .icon--moon svg path,
+[data-bs-theme="dark"] .dark-light-mode .icon--sun svg path {
+  fill: #ffffff !important;
 }
