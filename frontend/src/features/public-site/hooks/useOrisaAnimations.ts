@@ -33,7 +33,7 @@ export const useOrisaAnimations = () => {
       if (window.ScrollTrigger) {
         try {
           window.ScrollTrigger.refresh();
-        } catch (e) {
+        } catch {
           // ignore
         }
       }

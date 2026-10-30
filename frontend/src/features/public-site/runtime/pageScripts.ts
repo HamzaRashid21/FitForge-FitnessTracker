@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 /*
  * Bridge between React and the original Orisa jQuery / GSAP scripts.
@@ -168,7 +169,7 @@ export function teardownPageScripts() {
   const safe = (fn) => {
     try {
       fn();
-    } catch (e) {
+    } catch {
       /* element is already gone */
     }
   };

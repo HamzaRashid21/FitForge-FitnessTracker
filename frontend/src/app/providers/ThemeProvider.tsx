@@ -15,21 +15,23 @@ const THEME_STORAGE_KEY = 'theme';
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<ThemeMode>(() => {
     if (typeof window === 'undefined') return 'dark';
-    const saved = (localStorage.getItem('theme') || localStorage.getItem('fitforge-theme')) as ThemeMode | null;
+    const saved = (localStorage.getItem('theme') || localStorage.getItem('fitforge-theme') || localStorage.getItem('ff-theme')) as ThemeMode | null;
     if (saved === 'dark' || saved === 'light') {
       return saved;
     }
-    const htmlTheme = document.documentElement.getAttribute('data-bs-theme') as ThemeMode | null;
+    const htmlTheme = (document.documentElement.getAttribute('data-bs-theme') || document.documentElement.getAttribute('data-theme')) as ThemeMode | null;
     if (htmlTheme === 'dark' || htmlTheme === 'light') {
       return htmlTheme;
     }
-    return 'dark'; // Orisa index-7 defaults to dark mode
+    return 'dark'; // FitForge defaults to dark mode
   });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-bs-theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(THEME_STORAGE_KEY, theme);
     localStorage.setItem('fitforge-theme', theme);
+    localStorage.setItem('ff-theme', theme);
     document.querySelectorAll<HTMLInputElement>('#switch, input.dark-light-checkbox').forEach((cb) => {
       cb.checked = theme === 'dark';
     });

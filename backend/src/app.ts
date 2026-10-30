@@ -1,12 +1,13 @@
 import express, { type Express } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import { config } from './config/env.js';
 import { requestLogger } from './common/middleware/requestLogger.js';
-import { apiRateLimiter } from './common/middleware/rateLimiter.js';
 import { notFoundHandler } from './common/middleware/notFoundHandler.js';
 import { errorHandler } from './common/middleware/errorHandler.js';
 import { healthRouter } from './modules/health/health.routes.js';
+import { authRouter } from './modules/auth/routes/auth.routes.js';
 
 export function createApp(): Express {
   const app = express();
@@ -33,18 +34,17 @@ export function createApp(): Express {
     })
   );
 
-  // 3. Request Parsing with Size Limits
+  // 3. Request Parsing & Cookie Parsing with Size Limits
   app.use(express.json({ limit: '10kb' }));
   app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+  app.use(cookieParser());
 
   // 4. Request Logging
   app.use(requestLogger);
 
-  // 5. Rate Limiting for API routes
-  app.use(config.apiPrefix, apiRateLimiter);
-
-  // 6. API Route Registration
+  // 5. API Route Registration
   app.use(`${config.apiPrefix}/health`, healthRouter);
+  app.use(`${config.apiPrefix}/auth`, authRouter);
 
   // 7. 404 Route Not Found Handling
   app.use(notFoundHandler);

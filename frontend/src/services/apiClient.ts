@@ -19,33 +19,53 @@ export interface RequestOptions extends RequestInit {
   timeoutMs?: number;
 }
 
+let currentAccessToken: string | null = null;
+
+export function setAccessToken(token: string | null): void {
+  currentAccessToken = token;
+}
+
+export function getAccessToken(): string | null {
+  return currentAccessToken;
+}
+
 export async function request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
   const { timeoutMs = 10000, headers = {}, ...customConfig } = options;
 
-  // Cleanly join base URL with endpoint
-  const url = endpoint.startsWith('http')
-    ? endpoint
-    : `${env.apiUrl.replace(/\/$/, '')}/${endpoint.replace(/^\//, '')}`;
+  // Cleanly join base URL with endpoint and prevent duplicate api/v1 prefix
+  const cleanBase = env.apiUrl.replace(/\/$/, '');
+  let cleanEndpoint = endpoint.replace(/^\//, '');
+  if (cleanBase.endsWith('/api/v1') && cleanEndpoint.startsWith('api/v1/')) {
+    cleanEndpoint = cleanEndpoint.replace(/^api\/v1\//, '');
+  }
+  const url = endpoint.startsWith('http') ? endpoint : `${cleanBase}/${cleanEndpoint}`;
 
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  const timeoutId = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
 
   const defaultHeaders: Record<string, string> = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
+    ...(currentAccessToken ? { Authorization: `Bearer ${currentAccessToken}` } : {}),
   };
 
   try {
-    const response = await fetch(url, {
+    const fetchOptions: RequestInit = {
+      credentials: 'include',
       ...customConfig,
       headers: {
         ...defaultHeaders,
         ...(headers as Record<string, string>),
       },
-      signal: controller.signal,
-    });
+    };
 
-    clearTimeout(timeoutId);
+    if (controller && typeof AbortSignal !== 'undefined' && controller.signal instanceof AbortSignal) {
+      fetchOptions.signal = controller.signal;
+    }
+
+    const response = await fetch(url, fetchOptions);
+
+    if (timeoutId) clearTimeout(timeoutId);
 
     const contentType = response.headers.get('content-type');
     const isJson = contentType && contentType.includes('application/json');
@@ -76,7 +96,7 @@ export async function request<T>(endpoint: string, options: RequestOptions = {})
     const json = (await response.json()) as ApiResponse<T>;
     return json.data;
   } catch (error) {
-    clearTimeout(timeoutId);
+    if (timeoutId) clearTimeout(timeoutId);
 
     if (error instanceof ApiError) {
       throw error;

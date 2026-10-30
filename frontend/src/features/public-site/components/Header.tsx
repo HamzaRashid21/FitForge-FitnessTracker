@@ -125,6 +125,11 @@ function Header() {
                             Contact
                           </Link>
                         </li>
+                        <li>
+                          <Link to="/login" style={{ color: '#f0261f', fontWeight: 600 }}>
+                            Sign In
+                          </Link>
+                        </li>
                       </ul>
                     </nav>
                   </div>
@@ -259,6 +264,7 @@ function Header() {
                 <li><Link to="/about" onClick={(e) => handleNavigation('/about', e)}>About Us</Link></li>
                 <li><Link to="/pricing" onClick={(e) => handleNavigation('/pricing', e)}>Pricing</Link></li>
                 <li><Link to="/contact" onClick={(e) => handleNavigation('/contact', e)}>Contact</Link></li>
+                <li><Link to="/login" onClick={(e) => handleNavigation('/login', e)} style={{ color: '#f0261f', fontWeight: 600 }}>Sign In</Link></li>
               </ul>
             </nav>
           </div>
@@ -388,6 +394,7 @@ function Header() {
                   <li><Link to="/about" onClick={(e) => handleNavigation('/about', e)}>About Us</Link></li>
                   <li><Link to="/pricing" onClick={(e) => handleNavigation('/pricing', e)}>Pricing</Link></li>
                   <li><Link to="/contact" onClick={(e) => handleNavigation('/contact', e)}>Contact</Link></li>
+                  <li><Link to="/login" onClick={(e) => handleNavigation('/login', e)} style={{ color: '#f0261f', fontWeight: 600 }}>Sign In</Link></li>
                 </ul>
               </nav>
             </div>

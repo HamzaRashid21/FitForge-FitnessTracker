@@ -7,7 +7,18 @@ import ContactPage from '../../features/public-site/pages/ContactPage.js';
 import ComingSoonPage from '../../features/public-site/pages/ComingSoonPage.js';
 import NotFoundPage from '../../features/public-site/pages/NotFoundPage.js';
 
+import AuthLayout from '../../features/auth/layouts/AuthLayout.js';
+import LoginPage from '../../features/auth/pages/LoginPage.js';
+import RegisterPage from '../../features/auth/pages/RegisterPage.js';
+import VerifyEmailPage from '../../features/auth/pages/VerifyEmailPage.js';
+import ForgotPasswordPage from '../../features/auth/pages/ForgotPasswordPage.js';
+import ResetPasswordPage from '../../features/auth/pages/ResetPasswordPage.js';
+import OnboardingBoundaryPage from '../../features/auth/pages/OnboardingBoundaryPage.js';
+import { PublicOnlyRoute } from '../../features/auth/components/PublicOnlyRoute.js';
+import { ProtectedRoute } from '../../features/auth/components/ProtectedRoute.js';
+
 export const router = createBrowserRouter([
+  // Public Website Routes
   {
     path: '/',
     element: <PublicLayout />,
@@ -39,6 +50,57 @@ export const router = createBrowserRouter([
       {
         path: '*',
         element: <NotFoundPage />,
+      },
+    ],
+  },
+
+  // Dedicated Authentication Routes (Phase 2)
+  {
+    element: <AuthLayout />,
+    children: [
+      {
+        path: 'login',
+        element: (
+          <PublicOnlyRoute>
+            <LoginPage />
+          </PublicOnlyRoute>
+        ),
+      },
+      {
+        path: 'register',
+        element: (
+          <PublicOnlyRoute>
+            <RegisterPage />
+          </PublicOnlyRoute>
+        ),
+      },
+      {
+        path: 'verify-email',
+        element: <VerifyEmailPage />,
+      },
+      {
+        path: 'forgot-password',
+        element: (
+          <PublicOnlyRoute>
+            <ForgotPasswordPage />
+          </PublicOnlyRoute>
+        ),
+      },
+      {
+        path: 'reset-password',
+        element: (
+          <PublicOnlyRoute>
+            <ResetPasswordPage />
+          </PublicOnlyRoute>
+        ),
+      },
+      {
+        path: 'onboarding',
+        element: (
+          <ProtectedRoute>
+            <OnboardingBoundaryPage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
