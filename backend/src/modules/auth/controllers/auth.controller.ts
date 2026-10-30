@@ -150,6 +150,18 @@ export class AuthController {
       next(error);
     }
   }
+
+  public async saveOnboarding(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      if (!req.user?.sub) {
+        throw new UnauthorizedError('Authentication required.');
+      }
+      const user = await authService.saveOnboarding(req.user.sub, req.body);
+      sendSuccess(res, { user }, 'Onboarding preferences saved successfully.');
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export const authController = new AuthController();

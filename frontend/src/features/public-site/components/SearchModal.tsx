@@ -12,7 +12,7 @@ export const SearchModal: React.FC = () => {
                     <div className="at-search-top d-flex justify-content-between align-items-center">
                         <div className="at-header-logo at-search-logo">
                             <a href="/">
-                                <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/imgs/template/logo/fitforge-logo.png" alt="FitForge" />
+                                <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/auth/logo.png" alt="FitForge" />
                                 <p className="h6 fw-700 fz-24 mb-0">FitForge</p>
                             </a>
                         </div>

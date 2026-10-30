@@ -112,6 +112,10 @@ const UserSchema = new Schema<IUserDocument, IUserModel>(
       default: [],
       select: false,
     },
+    onboarding: {
+      type: Object,
+      default: undefined,
+    },
     lastLoginAt: {
       type: Date,
       default: undefined,
@@ -159,6 +163,7 @@ UserSchema.methods.toSafeUser = function (): ISafeUser {
     isOnboardingCompleted: this.isOnboardingCompleted,
     profileImage: this.profileImage,
     accountStatus: this.accountStatus as AccountStatus,
+    onboarding: this.onboarding,
     lastLoginAt: this.lastLoginAt,
     createdAt: this.createdAt,
     updatedAt: this.updatedAt,

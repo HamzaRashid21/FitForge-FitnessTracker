@@ -90,7 +90,7 @@ function Header() {
               <div className="col-xl-2 col-6">
                 <div className="at-header-logo">
                   <Link to="/" className="d-flex align-items-center gap-2">
-                    <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/imgs/template/logo/fitforge-logo.png" alt="FitForge" />
+                    <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/auth/logo.png" alt="FitForge" />
                     <p className="h6 fw-700 fz-24 text-white mb-0">
                       FitForge
                     </p>
@@ -234,7 +234,7 @@ function Header() {
           <div className="at-offcanvas-top d-flex align-items-center justify-content-between">
             <div className="at-offcanvas-logo">
               <Link to="/" onClick={closeSidebar} className="d-flex align-items-center gap-2">
-                <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/imgs/template/logo/fitforge-logo.png" alt="FitForge" />
+                <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/auth/logo.png" alt="FitForge" />
                 <p className="h6 fw-700 fz-24 mb-0">
                   FitForge
                 </p>
@@ -374,7 +374,7 @@ function Header() {
           <div className="at-offcanvas-2-left">
             <div className="at-header-logo d-flex justify-content-between align-items-center mb-50">
               <Link to="/" onClick={(e) => handleNavigation('/', e)} className="d-flex align-items-center gap-2">
-                <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/imgs/template/logo/fitforge-logo.png" alt="FitForge" />
+                <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/auth/logo.png" alt="FitForge" />
                 <p className="h6 fw-700 fz-24 mb-0">
                   FitForge
                 </p>

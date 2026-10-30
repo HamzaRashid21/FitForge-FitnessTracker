@@ -9,6 +9,23 @@ export interface IRefreshTokenSession {
   createdAt: Date;
 }
 
+export interface IUserOnboarding {
+  name?: string;
+  hear?: string;
+  adult?: boolean;
+  goal?: string | null;
+  exp?: string | null;
+  equip?: string[];
+  units?: 'metric' | 'imperial';
+  height?: string;
+  weight?: string;
+  age?: string;
+  days?: string[];
+  dur?: string | null;
+  plan?: 'free' | 'premium';
+  completedAt?: Date;
+}
+
 export interface IUser {
   _id: string;
   fullName: string;
@@ -26,6 +43,7 @@ export interface IUser {
   passwordResetTokenHash?: string;
   passwordResetExpiresAt?: Date;
   refreshTokens: IRefreshTokenSession[];
+  onboarding?: IUserOnboarding;
   lastLoginAt?: Date;
   createdAt: Date;
   updatedAt: Date;
@@ -41,6 +59,7 @@ export interface ISafeUser {
   isOnboardingCompleted: boolean;
   profileImage?: string;
   accountStatus: AccountStatus;
+  onboarding?: IUserOnboarding;
   lastLoginAt?: Date;
   createdAt: Date;
   updatedAt: Date;

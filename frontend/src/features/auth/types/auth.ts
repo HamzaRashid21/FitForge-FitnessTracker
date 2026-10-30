@@ -2,6 +2,22 @@ export type UserRole = 'Admin' | 'User';
 export type SubscriptionTier = 'Free' | 'Premium';
 export type AccountStatus = 'active' | 'suspended' | 'deactivated';
 
+export interface OnboardingData {
+  name: string;
+  hear: string;
+  adult: boolean;
+  goal: string | null;
+  exp: string | null;
+  equip: string[];
+  units: 'metric' | 'imperial';
+  height: string;
+  weight: string;
+  age: string;
+  days: string[];
+  dur: string | null;
+  plan: 'free' | 'premium';
+}
+
 export interface AuthUser {
   id: string;
   fullName: string;
@@ -12,6 +28,7 @@ export interface AuthUser {
   isOnboardingCompleted: boolean;
   profileImage?: string;
   accountStatus: AccountStatus;
+  onboarding?: OnboardingData;
   lastLoginAt?: string;
   createdAt: string;
   updatedAt: string;

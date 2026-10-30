@@ -5,6 +5,7 @@ import type {
   LoginCredentials,
   RegisterCredentials,
   ResetPasswordPayload,
+  OnboardingData,
 } from '../types/auth.js';
 
 interface AuthContextType {
@@ -19,6 +20,7 @@ interface AuthContextType {
   resendVerification: (email: string) => Promise<void>;
   forgotPassword: (email: string) => Promise<void>;
   resetPassword: (payload: ResetPasswordPayload) => Promise<void>;
+  saveOnboarding: (data: OnboardingData) => Promise<AuthUser>;
   refreshSession: () => Promise<AuthUser | null>;
   setUser: React.Dispatch<React.SetStateAction<AuthUser | null>>;
 }
@@ -108,6 +110,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     await authService.resetPassword(payload);
   };
 
+  const saveOnboarding = async (data: OnboardingData): Promise<AuthUser> => {
+    const res = await authService.saveOnboarding(data);
+    setUser(res.user);
+    return res.user;
+  };
+
   const value: AuthContextType = {
     user,
     accessToken,
@@ -120,6 +128,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     resendVerification,
     forgotPassword,
     resetPassword,
+    saveOnboarding,
     refreshSession,
     setUser,
   };

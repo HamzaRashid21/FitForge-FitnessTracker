@@ -65,3 +65,9 @@ authRouter.get(
   authenticate,
   authController.getMe.bind(authController)
 );
+
+authRouter.post(
+  '/onboarding',
+  authenticate,
+  authController.saveOnboarding.bind(authController)
+);

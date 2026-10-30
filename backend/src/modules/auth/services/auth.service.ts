@@ -7,7 +7,7 @@ import type {
   AuthTokens,
   AuthSessionResponse,
 } from '../types/auth.types.js';
-import type { ISafeUser } from '../../users/types/user.types.js';
+import type { ISafeUser, IUserOnboarding } from '../../users/types/user.types.js';
 import {
   BadRequestError,
   ConflictError,
@@ -334,6 +334,29 @@ export class AuthService {
     if (!user) {
       throw new NotFoundError('User not found.');
     }
+    return user.toSafeUser();
+  }
+
+  /**
+   * Save user onboarding answers and mark onboarding as completed.
+   */
+  public async saveOnboarding(userId: string, data: IUserOnboarding): Promise<ISafeUser> {
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new NotFoundError('User not found.');
+    }
+
+    user.isOnboardingCompleted = true;
+    user.onboarding = {
+      ...data,
+      completedAt: new Date(),
+    };
+
+    if (data.name && data.name.trim().length >= 2) {
+      user.fullName = data.name.trim();
+    }
+
+    await user.save();
     return user.toSafeUser();
   }
 }

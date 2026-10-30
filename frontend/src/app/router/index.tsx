@@ -13,9 +13,8 @@ import RegisterPage from '../../features/auth/pages/RegisterPage.js';
 import VerifyEmailPage from '../../features/auth/pages/VerifyEmailPage.js';
 import ForgotPasswordPage from '../../features/auth/pages/ForgotPasswordPage.js';
 import ResetPasswordPage from '../../features/auth/pages/ResetPasswordPage.js';
-import OnboardingBoundaryPage from '../../features/auth/pages/OnboardingBoundaryPage.js';
+import OnboardingPage from '../../features/onboarding/pages/OnboardingPage.js';
 import { PublicOnlyRoute } from '../../features/auth/components/PublicOnlyRoute.js';
-import { ProtectedRoute } from '../../features/auth/components/ProtectedRoute.js';
 
 export const router = createBrowserRouter([
   // Public Website Routes
@@ -52,6 +51,12 @@ export const router = createBrowserRouter([
         element: <NotFoundPage />,
       },
     ],
+  },
+
+  // Dedicated Onboarding Route (Standalone Full-Viewport Wizard)
+  {
+    path: 'onboarding',
+    element: <OnboardingPage />,
   },
 
   // Dedicated Authentication Routes (Phase 2)
@@ -92,14 +97,6 @@ export const router = createBrowserRouter([
           <PublicOnlyRoute>
             <ResetPasswordPage />
           </PublicOnlyRoute>
-        ),
-      },
-      {
-        path: 'onboarding',
-        element: (
-          <ProtectedRoute>
-            <OnboardingBoundaryPage />
-          </ProtectedRoute>
         ),
       },
     ],

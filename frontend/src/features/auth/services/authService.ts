@@ -5,6 +5,7 @@ import type {
   LoginCredentials,
   RegisterCredentials,
   ResetPasswordPayload,
+  OnboardingData,
 } from '../types/auth.js';
 
 export const authService = {
@@ -54,5 +55,9 @@ export const authService = {
 
   async getMe(): Promise<{ user: AuthUser }> {
     return apiClient.get<{ user: AuthUser }>('auth/me');
+  },
+
+  async saveOnboarding(data: OnboardingData): Promise<{ user: AuthUser }> {
+    return apiClient.post<{ user: AuthUser }>('auth/onboarding', data);
   },
 };

@@ -436,4 +436,37 @@ describe('FitForge Phase 2 Authentication & Security Test Suite', () => {
     expect(user.refreshTokens).toBeUndefined();
     expect(user.__v).toBeUndefined();
   });
+
+  // 21. Onboarding Endpoint (POST /api/v1/auth/onboarding)
+  it('21. should save onboarding details and return updated user via POST /api/v1/auth/onboarding', async () => {
+    const onboardingPayload = {
+      name: 'Alex The Great',
+      hear: 'Friend recommendation',
+      adult: true,
+      goal: 'Muscle gain',
+      exp: 'Intermediate',
+      equip: ['Full gym', 'Dumbbells'],
+      units: 'metric',
+      height: '180',
+      weight: '78',
+      age: '24',
+      days: ['Mon', 'Wed', 'Fri'],
+      dur: '45–60 min',
+      plan: 'premium',
+    };
+
+    const res = await request(app)
+      .post('/api/v1/auth/onboarding')
+      .set('Authorization', `Bearer ${userAccessToken}`)
+      .send(onboardingPayload);
+
+    expect(res.status).toBe(200);
+    expect(res.body.success).toBe(true);
+    expect(res.body.data.user.isOnboardingCompleted).toBe(true);
+    expect(res.body.data.user.fullName).toBe('Alex The Great');
+    expect(res.body.data.user.onboarding).toBeDefined();
+    expect(res.body.data.user.onboarding.goal).toBe('Muscle gain');
+    expect(res.body.data.user.onboarding.plan).toBe('premium');
+    expect(res.body.data.user.onboarding.equip).toEqual(['Full gym', 'Dumbbells']);
+  });
 });

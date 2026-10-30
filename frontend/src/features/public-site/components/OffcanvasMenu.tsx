@@ -9,7 +9,7 @@ export const OffcanvasMenu: React.FC = () => {
             <div className="at-offcanvas-top d-flex align-items-center justify-content-between">
                 <div className="at-offcanvas-logo">
                     <a href="/">
-                        <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/imgs/template/logo/fitforge-logo.png" alt="FitForge" />
+                        <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/auth/logo.png" alt="FitForge" />
                         <p className="h6 fw-700 fz-24 mb-0">FitForge</p>
                     </a>
                 </div>
@@ -118,7 +118,7 @@ export const OffcanvasMenu: React.FC = () => {
             <div className="at-offcanvas-2-left">
                 <div className="at-header-logo d-flex justify-content-between align-items-center mb-50">
                     <a href="/">
-                        <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/imgs/template/logo/fitforge-logo.png" alt="FitForge" />
+                        <img data-width="32" style={{ width: '32px', height: '32px', objectFit: 'contain' }} src="/assets/auth/logo.png" alt="FitForge" />
                         <p className="h6 fw-700 fz-24 mb-0">FitForge</p>
                     </a>
                     <span className="hamburger-close-btn">
