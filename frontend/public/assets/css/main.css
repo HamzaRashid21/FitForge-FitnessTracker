@@ -20466,13 +20466,13 @@ input.footer-15__form-input:focus {
 }
 .sec-1-home-7__content {
   width: 100%;
-  max-width: 640px;
-  padding: 30px 60px 60px 125px;
+  max-width: 760px;
+  padding: 30px 50px 60px 100px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .sec-1-home-7__content {
-    padding: 30px 50px 60px;
-    max-width: 600px;
+    padding: 30px 40px 60px;
+    max-width: 700px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -20507,18 +20507,18 @@ input.footer-15__form-input:focus {
 }
 .sec-1-home-7__headline {
   font-family: var(--at-ff-heading);
-  font-size: 92px;
-  line-height: 1;
+  font-size: 76px;
+  line-height: 1.05;
   letter-spacing: -0.02em;
 }
 @media only screen and (min-width: 1400px) and (max-width: 1599px) {
   .sec-1-home-7__headline {
-    font-size: 82px;
+    font-size: 70px;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .sec-1-home-7__headline {
-    font-size: 72px;
+    font-size: 64px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -20543,8 +20543,8 @@ input.footer-15__form-input:focus {
 }
 .sec-1-home-7__headline-arrow-cover {
   position: absolute;
-  top: 110px;
-  right: 0px;
+  top: 15px;
+  right: -55px;
   transform: rotate(-45deg);
 }
 .sec-1-home-7__headline-arrow-cover__headline-arrow {
@@ -44626,4 +44626,152 @@ body.at-magic-cursor #magic-cursor {
   transition-delay: 200ms;
   transform: scale(1) rotate(360deg);
 }
+
+/* ----------------------------------------------------
+   FitForge Uniform Slider Thumb & Image Sizing
+   ---------------------------------------------------- */
+.about-me-slider-thumb {
+  position: relative !important;
+  width: 100% !important;
+  height: 840px !important;
+  max-height: 840px !important;
+  overflow: hidden !important;
+  border-radius: 20px !important;
+  background-color: var(--at-neutral-800) !important;
+}
+
+.about-me-slider-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+@media (max-width: 1199px) {
+  .about-me-slider-thumb {
+    height: 380px !important;
+    max-height: 380px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-me-slider-thumb {
+    height: 280px !important;
+    max-height: 280px !important;
+  }
+}
+
+/* ----------------------------------------------------
+   FitForge Platforms & Equipment Throwable Capsules
+   ---------------------------------------------------- */
+.client-box {
+  color: #ffffff !important;
+  font-family: var(--at-ff-heading, 'Outfit', sans-serif);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.client-box:active {
+  cursor: grabbing;
+}
+
+.client-box--brand-h7 {
+  background-color: var(--at-theme-primary, #e24912) !important;
+}
+
+/* ----------------------------------------------------
+   FitForge Breadcrumbs Hero Section
+   Uses exact split hero background color (#c7260a / #800b01)
+   ---------------------------------------------------- */
+.fitforge-breadcrumb-hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: 155px;
+  padding-bottom: 70px;
+  background: #800b01;
+}
+
+.fitforge-breadcrumb-hero__bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 0;
+}
+
+.fitforge-breadcrumb-hero__bg-left {
+  flex: 1 1 50%;
+  background: #c7260a;
+}
+
+.fitforge-breadcrumb-hero__bg-right {
+  flex: 1 1 50%;
+  background: #800b01;
+}
+
+@media (max-width: 991px) {
+  .fitforge-breadcrumb-hero {
+    padding-top: 135px;
+    padding-bottom: 55px;
+  }
+}
+
+@media (max-width: 767px) {
+  .fitforge-breadcrumb-hero {
+    padding-top: 115px;
+    padding-bottom: 45px;
+  }
+  .fitforge-breadcrumb-hero__bg {
+    flex-direction: column;
+  }
+  .fitforge-breadcrumb-hero__bg-left {
+    flex: 0 0 45%;
+  }
+  .fitforge-breadcrumb-hero__bg-right {
+    flex: 1 1 auto;
+  }
+}
+
+.fitforge-breadcrumb-list .breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(255, 255, 255, 0.5) !important;
+  content: "/" !important;
+  padding: 0 0.5rem;
+}
+
+/* ----------------------------------------------------
+   FitForge Platforms & Equipment Marquee Badges
+   ---------------------------------------------------- */
+.platform-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88%;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+}
+
+.platform-brand-name {
+  font-family: var(--at-ff-heading, 'Outfit', sans-serif);
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+[data-bs-theme="light"] .platform-brand-badge {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="light"] .platform-brand-name {
+  color: #111827 !important;
+}
 /*# sourceMappingURL=main.css.map */
+

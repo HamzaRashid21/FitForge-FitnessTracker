@@ -16,7 +16,7 @@ export const HeroSection: React.FC = () => {
           {/* Left Column: Visual Showcase Card */}
           <div className="ff-hero-visual-card">
             <img
-              src="/assets/imgs/pages/home-7/hero-vr.webp"
+              src="/assets/imgs/pages/home-7/hero-tracker.png"
               alt="Athlete training in modern high-tech gym"
               className="ff-hero-visual-img"
               onError={(e) => {

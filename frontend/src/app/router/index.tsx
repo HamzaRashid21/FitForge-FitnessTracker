@@ -1,16 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { WebsiteLayout } from '../../website/layouts/WebsiteLayout.js';
-import HomePage from '../../website/pages/HomePage.js';
-import AboutPage from '../../website/pages/AboutPage.js';
-import PricingPage from '../../website/pages/PricingPage.js';
-import ContactPage from '../../website/pages/ContactPage.js';
-import ComingSoonPage from '../../website/pages/ComingSoonPage.js';
-import NotFoundPage from '../../website/pages/NotFoundPage.js';
+import { PublicLayout } from '../../layouts/public/PublicLayout.js';
+import HomePage from '../../features/public-site/pages/HomePage.js';
+import AboutPage from '../../features/public-site/pages/AboutPage.js';
+import PricingPage from '../../features/public-site/pages/PricingPage.js';
+import ContactPage from '../../features/public-site/pages/ContactPage.js';
+import ComingSoonPage from '../../features/public-site/pages/ComingSoonPage.js';
+import NotFoundPage from '../../features/public-site/pages/NotFoundPage.js';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <WebsiteLayout />,
+    element: <PublicLayout />,
     children: [
       {
         index: true,

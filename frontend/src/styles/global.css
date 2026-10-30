@@ -49,8 +49,10 @@ textarea {
 }
 
 [data-bs-theme="light"] .header-7.header-on-page .at-header-logo img,
-[data-bs-theme="light"] .header-7.is-scrolled .at-header-logo img {
-  filter: brightness(0) !important;
+[data-bs-theme="light"] .header-7.is-scrolled .at-header-logo img,
+.at-header-logo img,
+.at-offcanvas-logo img {
+  filter: none !important;
 }
 
 [data-bs-theme="light"] .header-7.header-on-page .at-main-menu.menu-light.style-1,
@@ -99,3 +101,155 @@ textarea {
 [data-bs-theme="dark"] .dark-light-mode .icon--sun svg path {
   fill: #ffffff !important;
 }
+
+/* ----------------------------------------------------
+   Uniform Slider Thumb & Image Sizing
+   Guarantees that all carousel / marquee images render with
+   consistent height, crisp aspect ratios, and no layout jumps.
+   ---------------------------------------------------- */
+.about-me-slider-thumb {
+  position: relative;
+  width: 100% !important;
+  height: 840px !important;
+  max-height: 840px !important;
+  overflow: hidden !important;
+  border-radius: 20px !important;
+  background-color: var(--at-neutral-800) !important;
+}
+
+.about-me-slider-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+@media (max-width: 1199px) {
+  .about-me-slider-thumb {
+    height: 380px !important;
+    max-height: 380px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-me-slider-thumb {
+    height: 280px !important;
+    max-height: 280px !important;
+  }
+}
+
+/* ----------------------------------------------------
+   Fitness Platforms & Wearables Throwable Capsules
+   ---------------------------------------------------- */
+.client-box {
+  color: #ffffff !important;
+  font-family: var(--at-ff-heading, 'Outfit', sans-serif);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.client-box:active {
+  cursor: grabbing;
+}
+
+.client-box--brand-h7 {
+  background-color: var(--at-theme-primary, #e24912) !important;
+}
+
+/* ----------------------------------------------------
+   FitForge Breadcrumbs Hero Section
+   Uses exact split hero background color (#c7260a / #800b01)
+   ---------------------------------------------------- */
+.fitforge-breadcrumb-hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: 155px;
+  padding-bottom: 70px;
+  background: #800b01;
+}
+
+.fitforge-breadcrumb-hero__bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 0;
+}
+
+.fitforge-breadcrumb-hero__bg-left {
+  flex: 1 1 50%;
+  background: #c7260a;
+}
+
+.fitforge-breadcrumb-hero__bg-right {
+  flex: 1 1 50%;
+  background: #800b01;
+}
+
+@media (max-width: 991px) {
+  .fitforge-breadcrumb-hero {
+    padding-top: 135px;
+    padding-bottom: 55px;
+  }
+}
+
+@media (max-width: 767px) {
+  .fitforge-breadcrumb-hero {
+    padding-top: 115px;
+    padding-bottom: 45px;
+  }
+  .fitforge-breadcrumb-hero__bg {
+    flex-direction: column;
+  }
+  .fitforge-breadcrumb-hero__bg-left {
+    flex: 0 0 45%;
+  }
+  .fitforge-breadcrumb-hero__bg-right {
+    flex: 1 1 auto;
+  }
+}
+
+.fitforge-breadcrumb-list .breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(255, 255, 255, 0.5) !important;
+  content: "/" !important;
+  padding: 0 0.5rem;
+}
+
+/* ----------------------------------------------------
+   FitForge Platforms & Equipment Marquee Badges
+   ---------------------------------------------------- */
+.platform-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88%;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+}
+
+.platform-brand-name {
+  font-family: var(--at-ff-heading, 'Outfit', sans-serif);
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+[data-bs-theme="light"] .platform-brand-badge {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="light"] .platform-brand-name {
+  color: #111827 !important;
+}
+
+
+

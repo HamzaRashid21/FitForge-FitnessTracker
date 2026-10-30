@@ -36,7 +36,7 @@ export const HomePage: React.FC = () => {
               <div className="anim-zoomin">
                 <img
                   className="sec-1-home-7__img"
-                  src="/assets/imgs/pages/home-7/hero-vr.webp"
+                  src="/assets/imgs/thegrind/4J9A2840.webp"
                   alt="FitForge athlete training"
                 />
               </div>
@@ -129,7 +129,9 @@ export const HomePage: React.FC = () => {
                     {/* Headline with diagonal arrow */}
                     <div className="sec-1-home-7__headline-wrap p-relative">
                       <h1 className="sec-1-home-7__headline text-white text-uppercase fw-700 mb-30">
-                        FORGE YOUR PHYSIQUE. TRACK WITH PRECISION.
+                        <span className="d-block">Mastering</span>
+                        <span className="d-block text-nowrap">Your Fitness</span>
+                        <span className="d-block">Journey</span>
                       </h1>
                       <span className="sec-1-home-7__headline-arrow-cover d-none d-md-inline-block">
                         <span className="sec-1-home-7__headline-arrow">
